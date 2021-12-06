@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hendriksons News</title>
 </head>
+<script>
+    var fs = require('fs');
+    var files = fs.readdirSync('/assets/photos/');
+</script>
 <style>
     main {
         text-align: center;
@@ -33,6 +37,10 @@
         color: red;
         padding-left: 10px;
     }
+    .title {
+        font-family: fantasy;
+        color: red;
+    }
 </style>
 <body>
     <header>
@@ -44,7 +52,11 @@
         </div>
     </header>
     <main>
-
+        <h1 class="title">Artikel Title</h1>
+        <div class="artikel1">
+            <p></p>
+            <img src="">
+        </div>
     </main>
 </body>
 </html>
