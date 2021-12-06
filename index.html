@@ -7,8 +7,10 @@
     <title>Hendriksons News</title>
 </head>
 <script>
-    var fs = require('fs');
-    var files = fs.readdirSync('/assets/photos/');
+    var fs =  fetch("https://hendriksons.github.io/dates.json")
+    var time = Date.now()
+    var lestel = fs["dates"]
+    alert(lestel)
 </script>
 <style>
     main {
