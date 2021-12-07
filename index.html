@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,52 +8,73 @@
     <title>Hendriksons News</title>
 </head>
 <script>
-    var fs = await (await fetch("https://hendriksons.github.io/dates.json")).json()
-    var time = Date.now()
-    console.log(fs);
-    var lestel = new Map(Object.entries(fs))
-    console.log(lestel);
+    async function dawdaw() {
+        var fs = await fetch("https://hendriksons.github.io/dates.txt")
+        var time = Date.now()
+        let json1 = await fs.json()
+        console.log(fs);
+        var lestel = [json1]
+        console.log(lestel);
+        document.getElementById("atikel1").href = lestel.get
+        
+        
+    }
+    async function loadarticel() {
+        var fs = await fetch("https://hendriksons.github.io/.txt")
+    }
+    dawdaw()
 </script>
 <style>
     main {
         text-align: center;
     }
+
     header {
         display: inline-flex;
         font-family: fantasy;
     }
+
     .h1o {
         background-color: red;
         color: white;
         padding-right: 10px;
         font-variant-caps: all-petite-caps;
     }
-    body{
-        margin:0%;
+
+    body {
+        margin: 0%;
     }
-    a{
+
+    a {
         text-decoration: none;
     }
+
     .links a {
         color: red;
     }
+
     .links {
         color: red;
         padding-left: 10px;
     }
+
     .title {
         font-family: fantasy;
         color: red;
     }
 </style>
+
 <body>
     <header>
         <div class="h1o">
             <h1>Hendriksons News</h1>
         </div>
         <div class="links">
-           <h1> <a href="index.html">Home</a></h1>
+            <h1> <a href="index.html">Home</a></h1>
+            <h1><a id="atikel1" href=""></a></h1>
+            <h1><a id="atikel2" href=""></a></h1>
         </div>
+        
     </header>
     <main>
         <h1 class="title">Artikel Title</h1>
@@ -62,4 +84,5 @@
         </div>
     </main>
 </body>
+
 </html>
