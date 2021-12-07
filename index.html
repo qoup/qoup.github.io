@@ -21,13 +21,34 @@
 
 
     }
-    async function loadarticel() {
-        var fs = await fetch("https://hendriksons.github.io/.txt")
+    async function loadarticel(artikels) {
+        console.log(artikels);
+        var fs = await fetch("https://hendriksons.github.io/artikel.txt")
+        fs = await fs.json()
+        var akmap = new Map(Object.entries(fs))
+        akmap = akmap.get(artikels)
+        document.getElementsByClassName("title").innerText = akmap.get("name")
+        var len = akmap.get("lenght")
+        for (let step = 0; step < len--; step++) {
+            var urtex = document.getElementsByClassName("artikelel").innerHTML;
+            document.getElementsByClassName("artikelel").innerHTML = urtex + "<div><p>"+ akmap.get("artikel"+ step) +"</p><img src="+akmap.get("img"+ step) +"></div>"
+        }
+
+
     }
-    function getParameter() {
+    async function getParameter() {
         var parameters = new URLSearchParams(window.location.search)
+        var artikellist1 = await fetch("https://hendriksons.github.io/artikellist.txt")
+        var artikellist = await artikellist1.json()
+        var artikelmap = new Map(Object.entries(artikellist))
+        if(parameters.has("page")) {
+            if(artikelmap.has(parameters.get("page"))) {
+                loadarticel(parameters.get("page"))
+            }
+        }
     }
     dawdaw()
+    getParameter()
 </script>
 <style>
     main {
@@ -89,9 +110,9 @@
     </header>
     <main>
         <h1 class="title">Artikel Title</h1>
-        <div class="artikel1">
-            <p></p>
-            <img src="">
+        <div class="artikelel">
+            <p class="artikel1"></p>
+            <img class="img1" src="">
         </div>
     </main>
 </body>
