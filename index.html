@@ -25,13 +25,16 @@
         console.log(artikels);
         var fs = await fetch("https://hendriksons.github.io/artikel.txt")
         fs = await fs.json()
+        console.log(fs);
         var akmap = new Map(Object.entries(fs))
-        akmap = akmap.get(artikels)
-        document.getElementsByClassName("title").innerText = akmap.get("name")
-        var len = akmap.get("lenght")
+        console.log(akmap);
+        var lel = new Map(Object.entries(akmap.get(artikels)))
+        console.log(lel);
+        document.getElementsByClassName("title").innerText = lel.get("name")
+        var len = lel.get("lenght")
         for (let step = 0; step < len--; step++) {
             var urtex = document.getElementsByClassName("artikelel").innerHTML;
-            document.getElementsByClassName("artikelel").innerHTML = urtex + "<div><p>"+ akmap.get("artikel"+ step) +"</p><img src="+akmap.get("img"+ step) +"></div>"
+            document.getElementsByClassName("artikelel").innerHTML = urtex + "<div><p>"+ lel.get("artikel"+ step) +"</p><img src="+lel.get("img"+ step) +"></div>"
         }
 
 
