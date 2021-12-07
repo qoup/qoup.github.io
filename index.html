@@ -7,10 +7,11 @@
     <title>Hendriksons News</title>
 </head>
 <script>
-    var fs =  fetch("https://hendriksons.github.io/dates.json")
+    var fs = await (await fetch("https://hendriksons.github.io/dates.json")).json()
     var time = Date.now()
-    var lestel = fs["dates"]
-    alert(lestel)
+    console.log(fs);
+    var lestel = new Map(Object.entries(fs))
+    console.log(lestel);
 </script>
 <style>
     main {
