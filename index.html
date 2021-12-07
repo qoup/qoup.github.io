@@ -13,14 +13,19 @@
         var time = Date.now()
         let json1 = await fs.json()
         console.log(fs);
-        var lestel = [json1]
+        var lestel = json1
         console.log(lestel);
-        document.getElementById("atikel1").href = lestel.get
-        
-        
+        document.getElementById("atikel1").innerText = lestel[0]
+        document.getElementById("atikel2").innerText = lestel[1]
+
+
+
     }
     async function loadarticel() {
         var fs = await fetch("https://hendriksons.github.io/.txt")
+    }
+    function getParameter() {
+        var parameters = new URLSearchParams(window.location.search)
     }
     dawdaw()
 </script>
@@ -56,11 +61,17 @@
     .links {
         color: red;
         padding-left: 10px;
+        white-space: nowrap;
     }
 
     .title {
         font-family: fantasy;
         color: red;
+    }
+
+    .links h1 {
+        padding-left: 10px;
+        display: inline-block;
     }
 </style>
 
@@ -74,7 +85,7 @@
             <h1><a id="atikel1" href=""></a></h1>
             <h1><a id="atikel2" href=""></a></h1>
         </div>
-        
+
     </header>
     <main>
         <h1 class="title">Artikel Title</h1>
