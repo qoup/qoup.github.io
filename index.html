@@ -31,13 +31,14 @@
         var lel = new Map(Object.entries(akmap.get(artikels)))
         console.log(lel);
         document.getElementsByClassName("title").innerText = lel.get("name")
-        var len = lel.get("lenght")
-        for (let step = 0; step < len--; step++) {
-            var urtex = document.getElementsByClassName("artikelel").innerHTML;
-            document.getElementsByClassName("artikelel").innerHTML = urtex + "<div><p>"+ lel.get("artikel"+ step) +"</p><img src="+lel.get("img"+ step) +"></div>"
+        var len = lel.get("length")
+        var le = len--;
+        for (let step = 0; step < le; step++) {
+            console.log(step);
+            var urtex = document.getElementById("artikelel").innerHTML
+            l = step+1;
+            document.getElementById("artikelel").innerHTML = urtex + "<div><p>"+ lel.get("artikel"+ l) +"</p><img src="+lel.get("img"+ l) +"></div>"
         }
-
-
     }
     async function getParameter() {
         var parameters = new URLSearchParams(window.location.search)
@@ -113,9 +114,7 @@
     </header>
     <main>
         <h1 class="title">Artikel Title</h1>
-        <div class="artikelel">
-            <p class="artikel1"></p>
-            <img class="img1" src="">
+        <div id="artikelel">
         </div>
     </main>
 </body>
