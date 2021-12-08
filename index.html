@@ -30,7 +30,7 @@
         console.log(akmap);
         var lel = new Map(Object.entries(akmap.get(artikels)))
         console.log(lel);
-        document.getElementsByClassName("title").innerText = lel.get("name")
+        document.getElementById("title").innerText = lel.get("name")
         var len = lel.get("length")
         var le = len--;
         for (let step = 0; step < le; step++) {
@@ -38,6 +38,8 @@
             var urtex = document.getElementById("artikelel").innerHTML
             l = step+1;
             document.getElementById("artikelel").innerHTML = urtex + "<div class='artik'><p>"+ lel.get("artikel"+ l) +"</p><img src="+lel.get("img"+ l) +"></div>"
+            console.log(lel.get("artikel"+ l));
+            console.log(lel.get("img"+ l));
         }
     }
     async function getParameter() {
@@ -89,7 +91,7 @@
         white-space: nowrap;
     }
 
-    .title {
+    #title {
         font-family: fantasy;
         color: red;
     }
@@ -99,6 +101,13 @@
         display: inline-block;
     }
     .artik {
+        white-space: nowrap;
+    }
+    .artik img {
+        display: inline-block;
+        max-width:15%;
+    }
+    .artik p {
         display: inline-block;
     }
 </style>
@@ -116,7 +125,7 @@
 
     </header>
     <main>
-        <h1 class="title">Artikel Title</h1>
+        <h1 id="title">Artikel Title</h1>
         <div id="artikelel">
         </div>
     </main>
