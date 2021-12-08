@@ -37,7 +37,7 @@
             console.log(step);
             var urtex = document.getElementById("artikelel").innerHTML
             l = step+1;
-            document.getElementById("artikelel").innerHTML = urtex + "<div><p>"+ lel.get("artikel"+ l) +"</p><img src="+lel.get("img"+ l) +"></div>"
+            document.getElementById("artikelel").innerHTML = urtex + "<div class='artik'><p>"+ lel.get("artikel"+ l) +"</p><img src="+lel.get("img"+ l) +"></div>"
         }
     }
     async function getParameter() {
@@ -96,6 +96,9 @@
 
     .links h1 {
         padding-left: 10px;
+        display: inline-block;
+    }
+    .artik {
         display: inline-block;
     }
 </style>
