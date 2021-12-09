@@ -9,14 +9,16 @@
 </head>
 <script>
     async function dawdaw() {
-        var fs = await fetch("https://hendriksons.github.io/dates.txt")
+        var fs = await fetch("https://hendriksons.github.io/artikellist.txt")
         var time = Date.now()
         let json1 = await fs.json()
         console.log(fs);
-        var lestel = json1
+        var lestel = new Map(Object.entries(fs))
         console.log(lestel);
-        document.getElementById("atikel1").innerText = lestel[0]
-        document.getElementById("atikel2").innerText = lestel[1]
+        document.getElementById("atikel1").innerText = lestel.get(0)
+        document.getElementById("atikel2").innerText = lestel.get(0)
+        document.getElementById("atikel1").setAttribute("href","?page=" + lestel.keys[0])
+        document.getElementById("atikel2").setAttribute("href","?page=" + lestel.keys[1])
 
 
 
