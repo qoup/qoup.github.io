@@ -12,13 +12,14 @@
         var fs = await fetch("https://hendriksons.github.io/artikellist.txt")
         var time = Date.now()
         let json1 = await fs.json()
-        console.log(fs);
-        var lestel = new Map(Object.entries(fs))
+        console.log(json1);
+        var lestel = new Map(Object.entries(json1))
         console.log(lestel);
-        document.getElementById("atikel1").innerText = lestel.get(0)
-        document.getElementById("atikel2").innerText = lestel.get(0)
-        document.getElementById("atikel1").setAttribute("href","?page=" + lestel.keys[0])
-        document.getElementById("atikel2").setAttribute("href","?page=" + lestel.keys[1])
+        console.log();
+        document.getElementById("atikel1").innerText = lestel.get(Array.from(lestel.keys())[0])
+        document.getElementById("atikel2").innerText = lestel.get(Array.from(lestel.keys())[1])
+        document.getElementById("atikel1").setAttribute("href","?page=" + (Array.from(lestel.keys())[0]))
+        document.getElementById("atikel2").setAttribute("href","?page=" + (Array.from(lestel.keys())[1]))
 
 
 
