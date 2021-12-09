@@ -1,4 +1,4 @@
 {
 "19-12-21":{"name":"Moin","length":"1","artikel1":"TExtdwdawdawdaddsahadascd<br>dwdawhudawdawdawdhiawdiawh<br>jhihadajw<br>ioejfiojeiofhsuihefuihuiah<br>dadwdawda","img1":""},
-"19-12-23":{"name":"les","length":"2","artikel1":"TExtdwdawdawdaddsahadascd<br>adwdaw<br>jhihadajw<br>ioejfiojeiofhsuihefuihuiah<br>dadwdawda","img1":"","artikel2":"TExtdwdawdawdaddsahadascd<br>adwdaw<br>jhihadajw<br>ioejfiojeiofhsuihefuihuiah<br>dadwdawda","img1":""}
+"19-12-23":{"name":"les","length":"2","artikel1":"TExtdwdawdawdaddsahadascd<br>adwdaw<br>jhihadajw<br>ioejfiojeiofhsuihefuihuiah<br>dadwdawda","img1":"","artikel2":"TExtdwdawdawdaddsahadascd<br>adwdaw<br>jhihadajw<br>ioejfiojeiofhsuihefuihuiah<br>dadwdawda","img2":""}
 }
