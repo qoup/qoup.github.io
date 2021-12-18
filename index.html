@@ -12,14 +12,25 @@
     <title>Hendriksons News</title>
 </head>
 <script>
+    async function isNewest() {
+        var parameters = new URLSearchParams(window.location.search)
+        var artikellist1 = await fetch("https://hendriksons.github.io/artikellist.txt")
+        var artikellist = await artikellist1.json()
+        var artikelmap = new Map(Object.entries(artikellist))
+        if(parameters.has("page")) {
+            if(artikelmap.has(parameters.get("page"))) {
+                if (Array.from(artikelmap.keys())[0] != parameters.get("page"))  {
+                    document.getElementById('he').style.display = "block"
+                }
+            }
+        }
+        
+    }
     async function dawdaw() {
         var fs = await fetch("https://hendriksons.github.io/artikellist.txt")
         var time = Date.now()
         let json1 = await fs.json()
-        console.log(json1);
         var lestel = new Map(Object.entries(json1))
-        console.log(lestel);
-        console.log();
         document.getElementById("atikel1").innerText = lestel.get(Array.from(lestel.keys())[0])
         document.getElementById("atikel2").innerText = lestel.get(Array.from(lestel.keys())[1])
         document.getElementById("atikel1").setAttribute("href","?page=" + (Array.from(lestel.keys())[0]))
@@ -29,24 +40,17 @@
 
     }
     async function loadarticel(artikels) {
-        console.log(artikels);
         var fs = await fetch("https://hendriksons.github.io/artikel.txt")
         fs = await fs.json()
-        console.log(fs);
         var akmap = new Map(Object.entries(fs))
-        console.log(akmap);
         var lel = new Map(Object.entries(akmap.get(artikels)))
-        console.log(lel);
         document.getElementById("title").innerText = lel.get("name")
         var len = lel.get("length")
         var le = len--;
         for (let step = 0; step < le; step++) {
-            console.log(step);
             var urtex = document.getElementById("artikelel").innerHTML
             l = step+1;
             document.getElementById("artikelel").innerHTML = urtex + "<div class='artik'><p>"+ lel.get("artikel"+ l) +"</p><img src="+lel.get("img"+ l) +"></div>"
-            console.log(lel.get("artikel"+ l));
-            console.log(lel.get("img"+ l));
         }
     }
     async function getParameter() {
@@ -59,12 +63,12 @@
                 loadarticel(parameters.get("page"))
             }
         }else {
-            console.log(1);
             loadarticel(Array.from(artikelmap.keys())[0])
         }
     }
     dawdaw()
     getParameter()
+    isNewest()
 </script>
 <style>
     main {
@@ -126,6 +130,13 @@
         font-family: sans-serif;
         color: white;
     }
+    #he {
+        display: none;
+        color: rgb(129, 129, 129);
+        font-family: monospace;
+        font-size: 20px;
+        text-align: center;
+    }
     @media only screen and (max-width: 600px) {
         header{
             display: block;
@@ -157,6 +168,7 @@
         </div>
 
     </header>
+    <p id="he">Das ist nicht der neuste Artikel!!!</p>
     <main>
         <h1 id="title">No Ethernet</h1>
         <div id="artikelel">
