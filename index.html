@@ -43,6 +43,7 @@
         var fs = await fetch("https://hendriksons.github.io/artikel.txt")
         fs = await fs.json()
         var akmap = new Map(Object.entries(fs))
+        console.log(akmap);
         var lel = new Map(Object.entries(akmap.get(artikels)))
         document.getElementById("title").innerText = lel.get("name")
         var len = lel.get("length")
