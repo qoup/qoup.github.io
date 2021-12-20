@@ -1,4 +1,4 @@
 {
 "20-12-21":{"name":"Meders Artikel","length":"7","artikel1":"1. Nicht 'Brezel' sondern 'Bräzel'.","img1":"","artikel2":"2. Was ist die Lateinlehrer*in nicht ? Eine gute Lehrer*in  ","img2":"","artikel3":"3. Ist Schule cool ? ","img3":"","artikel4":"4. Die Lateinlehrer*in ernährt ihren Hund Vegan. ","img4":"","artikel5":"5. Was ist das beste Schulfach ?","img5":"","artikel6":"6. Was wollen Schueler in einer Freihstunde ?<br> A: Lernen oder Lernspiele spielen.<br> B: Rausgehen und Fußball oder Basketball spielen.","img6":"","artikel7":"7. Gewalt ist eine Lösung !","img7":"" },
-"19-12-23":{"name":"les","length":"2","artikel1":"TExtdwdawdawdaddsahadascd<br>adwdaw<br>jhihadajw<br>ioejfiojeiofhsuihefuihuiah<br>dadwdawda","img1":"","artikel2":"TExtdwdawdawdaddsahadascd<br>adwdaw<br>jhihadajw<br>ioejfiojeiofhsuihefuihuiah<br>dadwdawda","img2":""}
+"20-12-20":{"name":"Existiert nicht","length":"1","artikel1":"Dieser Artikel existiert nicht","img1":""}
 }
