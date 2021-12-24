@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wintergame</title>
+</head>
+
+<body>
+    <canvas id="canv" allowfullscreen>dawdaw
+    </canvas>
+
+    <script>
+        xu = 0;
+        yu = 0;
+        var can = document.getElementById("canv");
+        var ctx = document.getElementById("canv").getContext("2d")
+        function size() {
+            ctx.width = window.innerWidth
+            ctx.height = window.innerHeight
+            ctx.scale(0.5, 0.5)
+            ctx.imageSmoothingEnabled = false;
+
+        }
+        function game(x, y) {
+            var player = new Image()
+            player.src = './Player.png'
+            var background = new Image()
+            background.src = './background.png'
+            background.addEventListener('load', function () {
+                ctx.imageSmoothingEnabled = false
+                xu = x
+                yu = y
+                ctx.drawImage(background, x, y);
+                ctx.drawImage(player, 300, 100)
+            }, false);
+            console.log(xu, yu);
+            //var ctx = cav.getContext("2d")
+
+            //document.getElementById("canv").getContext("2d").drawImage(document.getElementById("daw"), 400, 400)
+        }
+        function moveTo(x, y) {
+            ctx.clearRect(x, y)
+            var dataimg = ctx.getImageData(xu, yu)
+            ctx.putImageData(dataimg, x, y)
+        }
+        document.onload = setTimeout(function () { game(-640, -370), size(), player() }, 100)
+        window.devicePixelRatio = 1
+        document.addEventListener("keydown", function (event) {
+            const key = event.key;
+            console.log(key);
+            if (key == "ArrowUp" || key == "w") {
+                if (yu >= 0) {
+                    game(xu, -820)
+                } else {
+                    game(xu, yu + 5)
+                }
+            }
+            if (key == "ArrowDown" || key == "s") {
+                if (yu <= -890) {
+                    game(xu, -5)
+                } else {
+                    game(xu, yu - 5)
+                }
+            }
+            if (key == "ArrowLeft" || key == "a") {
+                if (xu >= -10) {
+                    game(-1590, yu)
+                } else {
+                    game(xu + 5, yu)
+                }
+            }
+            if (key == "ArrowRight" || key == "d") {
+                if (xu <= -1605) {
+                    game(-25, yu)
+                } else {
+                    game(xu - 5, yu)
+                }
+            }
+        })
+        function player() {
+
+        }
+        //game()
+    </script>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        #canv {
+            width: 90%;
+            height: 90%;
+            image-rendering: pixelated;
+            image-rendering: optimizespeed;
+        }
+
+        html,
+        body {
+            overflow: hidden;
+        }
+    </style>
+</body>
+
+</html>
