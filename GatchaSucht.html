@@ -1,0 +1,281 @@
+<html>
+
+<head>
+    <title>GenshinGatchaSim</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        html {
+            color: #dd0808;
+            background-color: white;
+            font-family: "Raleway", Helvetica, Arial, sans-serif;
+            padding-left: 17px;
+            padding-right: 17px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+
+
+        p {
+            display: block;
+        }
+
+        #fuenf {
+            color: gold
+        }
+
+        body {
+            margin: 0;
+        }
+
+
+
+
+
+        #kek {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 30px;
+            box-sizing: content-box;
+            display: block;
+            float: right;
+
+        }
+
+
+
+        #lsa {
+            box-sizing: content-box;
+            font-size: 23px;
+        }
+
+        #vier {
+            color: palevioletred;
+        }
+
+
+
+        @media only screen and (max-width: 600px) {}
+
+        @media only screen and (min-width:601px) {
+
+            #ada {
+                display: flex;
+                vertical-align: baseline;
+                margin-right: 0px;
+                justify-content: space-between;
+            }
+
+            #roll {
+
+                font-size: 25px;
+                padding-right: 9px;
+            }
+
+            #sl {
+                bottom: 10;
+                position: fixed;
+                width: 10%;
+                margin-left: 50%;
+                margin-right: 50%;
+            }
+
+            #calulos {
+                margin-top: 0px;
+                float: right;
+                margin-right: 0px;
+                border-left-style: solid;
+                padding-left: 5px;
+                border-left-color: gray;
+                border-left-width: 2px;
+            }
+
+        }
+    </style>
+    <script>
+        //By Hendrikson aka. Esdeath,Cocoma`am,Salveteservi
+        let i = 0
+        let eventfivestar = null;
+        let ef = ["Venti","Klee","Tartaglia","Zhongli","Albedo","Ganyu","Xiao","Hu Tao","Eula","Kazuha","Ayaka","Yoimiya","Raiden Shogun","Kokomi","Arataki Itto","Shenhe","Yae Miko","Ayato","Yelan"]
+
+        let ca = [
+            [ef[6],"Barbara","Noelle","Yanfei","2.7"],
+            [ef[18],"Barbara","Noelle","Yanfei","2.7"],
+            [ef[10],"Razor","Rosaria","Sayu","2.6"],
+            [ef[0],"Sucrose","Xiangling","Yun Jin","2.6"],
+            [ef[17],"Sucrose","Xiangling","Yun Jin","2.6"],
+            [ef[12], "Kujou Sara", "Bennett", "Xingyan", "2.5"],
+            [ef[13], "Kujou Sara", "Bennett", "Xingyan", "2.5"],
+            [ef[16], "Fischl", "Thoma", "Diona", "2.5"],
+            [ef[5], "Xingqui", "Beidou", "Yanfei", "2.4"],
+            [ef[3], "Xingqui", "Beidou", "Yanfei", "2.4"],
+            [ef[15], "Yun Jin", "Ningguang", "Chongyun", "2.4"],
+            [ef[6], "Yun Jin", "Ningguang", "Chongyun", "2.4"],
+            [ef[14], "Gorou", "Barbara", "Xiangling", "2.3"],
+            [ef[8], "Bennett", "Noelle", "Rosaria", "2.3"],
+            [ef[4], "Bennett", "Noelle", "Rosaria", "2.3"],
+            [ef[7], "Thoma", "Diona", "Sayu", "2.2"],
+            [ef[2], "Ningguang", "Chongyun", "Yanfei", "2.2"],
+            [ef[13], "Rosaria", "Beidou", "Xingqiu", "2.1"],
+            [ef[12], "Xiangling", "Kujou Sara", "Sucrose", "2.1"],
+            [ef[11], "Sayu", "Diona", "Xingyan", "2.0"],
+            [ef[10], "Ningguang", "Chongyun", "Yanfei", "2.0"],
+            [ef[9], "Rosaria", "Razor", "Bennett", "1.6"],
+            [ef[1], "Barbara", "Sucrose", "Fischl", "1.6"],
+            [ef[8], "Xingyan", "Xingqiu", "Beidou", "1.5"],
+            [ef[3], "Yanfei", "Noelle", "Diona", "1.5"],
+            [ef[2], "Rosaria", "Barbara", "Fischl", "1.4"],
+            [ef[0], "Sucrose", "Razor", "Noelle", "1.4"],
+            [ef[7], "Xingqiu", "Xiangling", "Chongyun", "1.3"],
+            ["Keqing", "Ningguang", "Bennett", "Barbara", "1.3"],
+            [ef[6], "Diona", "Beidou", "Xingyan", "1.3"],
+            [ef[5], "Xiangling", "Xingqiu", "Noelle", "1.2"],
+            [ef[4], "Fischl", "Sucrose", "Bennett", "1.2"],
+            [ef[3], "Xingyan", "Razor", "Chongyun", "1.1"],
+            [ef[2], "Diona", "Beidou", "Ningguang", "1.1"],
+            [ef[1], "Xingqiu", "Noelle", "Sucrose", "1.0"],
+            [ef[0], "Fischl", "Barbara", "Xiangling", "1.0"]
+        ]
+        let aa = ["Amber", "Barbara", "Beidou", "Bennett", "Chongyun", "Diona", "Fischel", "Gorou", "Kaeya", "Kujou Sara", "Lisa", "Ningguang", "Noelle", "Razor", "Rosaria", "Sayu", "Succrose", "Thoma", "Xiangling", "Xingqiu", "Xinyan", "Yanfei", "Yun Jin", "Rust", "The Stringless", "Eye of Perception", "The Widsith", "Favonius Lance", "Painslasher", "The Bell", "Lion's Roar", "The Flute", "Sacrificial Bow", "Favonius Warbow", "Sacrificial Fragments", "Favonius Codex", "Dragon's Bane", "Sacrificial Greatsword", "Favonius Greatsword", "Sacrificial Sword", "Favonius Sword"];
+        let a4 = ["Amber", "Barbara", "Beidou", "Bennett", "Chongyun", "Diona", "Fischel", "Gorou", "Kaeya", "Kujou Sara", "Lisa", "Ningguang", "Noelle", "Razor", "Rosaria", "Sayu", "Succrose", "Thoma", "Xiangling", "Xingqiu", "Xinyan", "Yanfei", "Yun Jin", "Rust", "The Stringless", "Eye of Perception", "The Widsith", "Favonius Lance", "Painslasher", "The Bell", "Lion's Roar", "The Flute", "Sacrificial Bow", "Favonius Warbow", "Sacrificial Fragments", "Favonius Codex", "Dragon's Bane", "Sacrificial Greatsword", "Favonius Greatsword", "Sacrificial Sword", "Favonius Sword"];
+        let a3 = ["Slingshot", "Raven Bow", "Thrilling Tales of Dragon Slayers", "Black Tassel", "Bloodtainted Greatsword", "Skyrider Sword", "Cool Steel", "Sharpshooter's Oath", "Emerald Orb", "Magic Guide", "Debate Club", "Ferrous Shadow", "Harbinger of Dawn"]
+        let a5 = ["Mona", "QiQI", "Jean", "Diluc", "Keqing"];
+        let a7 = ["Mona", "QiQI", "Jean", "Diluc", "Keqing"];
+        let rols90 = 0;
+        let rols = 0;
+        function loadlist() {
+            console.log("lol");
+            for (let i = 0; i < ca.length; i++) {
+                let b = ca[i]
+                document.getElementById("calulos").innerHTML = document.getElementById("calulos").innerHTML + "<p onclick=gelt(" + i + ")>" + b[0] + "   " + b[4] + "</p>"
+
+            }
+        }
+        seteventfourestar(ca[0][1]);
+        seteventfourestar(ca[0][2]);
+        seteventfourestar(ca[0][3]);
+        seteventfivestar(ca[0][0])
+        function gelt(lol) {
+            let b = ca[lol]
+            a5.length = 0
+            a5 = a5.concat(a7)
+            a4.length = 0
+            a4 = a4.concat(aa)
+            seteventfourestar(b[1]);
+            seteventfourestar(b[2]);
+            seteventfourestar(b[3]);
+            seteventfivestar(b[0]);
+        }
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+        function get_random(list) {
+            return list[Math.floor((Math.random() * list.length))];
+        }
+        function get3star() {
+            document.getElementById("kek").innerHTML = document.getElementById("kek").innerHTML + "<p>3 Sterne :" + get_random(a3) + "</p>"
+        }
+        function get4star() {
+            document.getElementById("kek").innerHTML = document.getElementById("kek").innerHTML + "<p id='vier'>4 Sterne :" + get_random(a4) + "</p>"
+        }
+        function get5star() {
+            let s = get_random(a5)
+            if (i == 1) {
+                i = 0;
+                document.getElementById("kek").innerHTML = document.getElementById("kek").innerHTML + "<p id='fuenf'>5 Sterne  :" + eventfivestar + "</p>"
+            } else if (a7.includes(s)) {
+                i = i + 1
+                document.getElementById("kek").innerHTML = document.getElementById("kek").innerHTML + "<p id='fuenf'>5 Sterne  : " + s + "</p>"
+            } else if (s == eventfivestar) {
+                document.getElementById("kek").innerHTML = document.getElementById("kek").innerHTML + "<p id='fuenf'>5 Sterne  : " + s + "</p>"
+                i = 0
+            }
+
+        }
+        function pull() {
+            document.getElementById("kek").innerText = ""
+            let a = getRandomInt(999)
+            rols = rols + 1;
+            rols90 = rols90 + 1;
+            if (rols90 == 90) {
+                get5star();
+                rols90 = 0;
+            } else if (rols == 10 || rols >= 10) {
+                get4star();
+                rols = 0;
+            } else if (a >= 57) {
+                get3star();
+            } else if (a <= 57 && a >= 6) {
+                get4star();
+                rols = 0;
+            } else if (a <= 6) {
+                get5star();
+                rols90 = 0;
+            }
+        }
+        function pull10() {
+            document.getElementById("kek").innerText = ""
+            for (let i = 0; i < 10; i++) {
+                let a = getRandomInt(999)
+                rols = rols + 1;
+                rols90 = rols90 + 1;
+                if (rols90 == 90) {
+                    get5star();
+                    rols90 = 0;
+                } else if (rols == 10 || rols >= 10) {
+                    rols = 0;
+                    get4star();
+                } else if (a >= 57) {
+                    get3star();
+                } else if (a <= 57 && a >= 6) {
+                    rols = 0;
+                    get4star();
+                } else if (a <= 6) {
+                    get5star();
+                    rols90 = 0;
+                }
+            }
+        }
+        function lol() {
+            loadlist()
+
+
+
+        }
+        function seteventfivestar(name) {
+            eventfivestar = name;
+            for (let i = 0; i < a7.length; i++) {
+                a5.push(name);
+            }
+        } function seteventfourestar(name) {
+            let numb = Math.round(aa.length / 3)
+            for (let i = 0; i < numb; i++) {
+                a4.push(name);
+            }
+        }
+
+    </script>
+</head>
+
+<body onload="lol()">
+    <div id="sl">
+        <span id="roll" onclick="pull10()">10 Pull</span>
+        <span id="roll" onclick="pull()">Roll</span>
+    </div>
+
+    <div id="ada">
+        <p id="lsa">Rolls:</p>
+        <div id="kek">
+
+
+        </div>
+        <aside id="calulos">
+        </aside>
+    </div>
+</body>
+
+</html>
