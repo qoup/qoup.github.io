@@ -6,17 +6,43 @@
     <title>VokTrai</title>
 </head>
 <script>
-    
+    var xhr = new XMLHttpRequest()
+    xhr.onload = function() {
+        var res = xhr.responseText
+        console.log(res)
+        var json = JSON.parse(res)
+        
+    }
+    xhr.open("GET","https://hendriksons.github.io/Voktrai/w%C3%B6rter.json",true)
+    xhr.send()
 </script>
 <style>
-
+    :root {
+        font-family: monospace;
+        text-align: center;
+    }
+    h1 {
+        text-align: center;
+    }
+    main {
+        font-size: large;
+    }
 </style>
 <body>
     <header>
-
+        <h1>Voktrai</h1>
     </header>
     <main>
-
+        <p id="score">Score:</p>
+        <p id="word">Wort: </p>
+        <input placeholder="Translation"><br>
+        <input placeholder="Konjugation/deklination"><br>
+        <input placeholder="Geschlecht/1 Person präs"><br>
+        <input placeholder="1 Person perfekt"><br>
+        <input placeholder="Wortart V/A/S"><br>
+        <input placeholder="Genitiv SG/PPP"><br>
+        <br>
+        <button>Next</button>
     </main>
     <footer>
 
