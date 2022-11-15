@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,45 +8,147 @@
 </head>
 <script>
     var xhr = new XMLHttpRequest()
-    xhr.onload = function() {
+    var json = null;
+    var addedjson =""
+    var score = 0
+    var wort = ""
+    var trans = ""
+    var kon = ""
+    var ges = ""
+    var einspp = ""
+    var wart = ""
+    var genppp = ""
+    function check() {
+        if (trans === document.getElementById("trans").value) {
+            score++
+        }
+        if (kon === document.getElementById("kon").value) {
+            score++
+        }
+        if (ges === document.getElementById("ges").value) {
+            score++
+        }
+        if (einspp === document.getElementById("einspp").value) {
+            score++
+        }
+        if (wart === document.getElementById("wart").value) {
+            score++
+        }
+        if (genppp === document.getElementById("genppp").value) {
+            score++
+        }
+        document.getElementById('score').innerText = "Score: " + score
+        score = 0
+    }
+    function sectval() {
+        var length = Object.keys(json).length
+        var keys = Object.keys(json)
+        var rand = Math.floor(Math.random() * length)
+        wort = keys[rand]
+        var word = json[keys[rand]]
+        trans = word[0]
+        kon = word[1]
+        ges = word[2]
+        einspp = word[3]
+        wart = word[4]
+        genppp = word[5]
+        document.getElementById("word").innerText = "Wort:" + wort
+    }
+    xhr.onload = function () {
         var res = xhr.responseText
         console.log(res)
-        var json = JSON.parse(res)
+        if (res.startsWith("{")) {
+            json = JSON.parse(res)
+            sectval()
+        }
+
+    }
+    xhr.open("GET", "https://hendriksons.github.io/Voktrai/w%C3%B6rter.json", true)
+    xhr.send()
+    function lol() {
+        check()
+        sectval()
+
+    }
+    function add() {
+        var wort1 =  document.getElementById("wort1").value
+        var trans1 = document.getElementById("trans1").value
+        var kon1 = document.getElementById("kon1").value
+        var ges1 = document.getElementById("ges1").value
+        var einspp1 = document.getElementById("einspp1").value
+        var wart1= document.getElementById("wart1").value
+        var genppp1 = document.getElementById("genppp1").value
+        addedjson += '"'+wort1+'":["'+trans1+'","'+ kon1+'","'+ges1+'","'+einspp1+'","'+wart1+'","'+genppp1+'"]\n'
+        var result = document.getElementById("result").innerText = addedjson
         
     }
-    xhr.open("GET","https://hendriksons.github.io/Voktrai/w%C3%B6rter.json",true)
-    xhr.send()
 </script>
 <style>
     :root {
         font-family: monospace;
         text-align: center;
     }
+
     h1 {
         text-align: center;
     }
+
     main {
         font-size: large;
     }
+
+    footer {
+        position: fixed;
+        display: inline;
+        bottom: 0%;
+        height: 5%;
+        align-items: center;
+        text-align: center;
+    }
+    #ask {
+        display: block;
+    }
+    #add {
+        display: none;
+    }
 </style>
+
 <body>
     <header>
         <h1>Voktrai</h1>
     </header>
     <main>
-        <p id="score">Score:</p>
-        <p id="word">Wort: </p>
-        <input placeholder="Translation"><br>
-        <input placeholder="Konjugation/deklination"><br>
-        <input placeholder="Geschlecht/1 Person präs"><br>
-        <input placeholder="1 Person perfekt"><br>
-        <input placeholder="Wortart V/A/S"><br>
-        <input placeholder="Genitiv SG/PPP"><br>
-        <br>
-        <button>Next</button>
+        <div id="ask">
+            <p id="score">Score:</p>
+            <p id="word">Wort: </p>
+            <input id="trans" placeholder="Translation"><br>
+            <input id="kon" placeholder="Konjugation/deklination"><br>
+            <input id="ges" placeholder="Geschlecht/1 Person präs"><br>
+            <input id="einspp" placeholder="1 Person perfekt"><br>
+            <input id="wart" placeholder="Wortart V/A/S"><br>
+            <input id="genppp" placeholder="Genitiv SG/PPP"><br>
+            <br>
+            <button id="next" onclick="lol()">Next</button>
+        </div>
+        <div id="add">
+            <input id="wort1" placeholder="Wort"><br>
+            <input id="trans1" placeholder="Translation"><br>
+            <input id="kon1" placeholder="Konjugation/deklination"><br>
+            <input id="ges1" placeholder="Geschlecht/1 Person präs"><br>
+            <input id="einspp1" placeholder="1 Person perfekt"><br>
+            <input id="wart1" placeholder="Wortart V/A/S"><br>
+            <input id="genppp1" placeholder="Genitiv SG/PPP"><br>
+            <br>
+            <button id="ad1d" onclick="add()">Add</button>
+            <p>Send to the admin to be added:</p>
+            <p id="result"></p>
+        </div>
     </main>
     <footer>
-
+        <img onclick="document.getElementById('add').style.display = 'block';document.getElementById('ask').style.display = 'none'" src="add.png">
+        <img onclick="document.getElementById('add').style.display = 'none';document.getElementById('ask').style.display = 'block'"
+            src="book.png" />
     </footer>
 </body>
+
 </html>
