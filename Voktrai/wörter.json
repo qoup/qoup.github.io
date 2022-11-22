@@ -1,23 +1,165 @@
 {
-    "a":["von","","","","",""],
-"ab":["von her","","","","",""],
-"abducere":["wegfuehren","","abduco","abduxi","V","abductum"],
-"abesse":["fehlen","","absum","afui","",""],
-"abire":["weggehen","","abeo","abii","V","abitum"],
-"ac":["und, und auch","","","","",""],
-"atque":["wie, als","","","","",""],
-"accedere":["herbeikommen","","accedo","accessi","V","accessum"],
-"accendere":["anfeuern","","accendo","accendi","V","accensum"],
-"accidere":["geschehen","","accido","accidi","V","accisus"],
-"accipere":["erhalten","","accipo","accepi","V","acceptum"],
-"accusare":["anklagen","","accuso","accusavi","V","accusatus"],
-"acer":["energisch","","acris","","A","acre"],
-"acerbus":["bitter","a,o","fmn","","A","a,um"],
-"acies":["Schlachtordung","a","f","","S","acei"],
-"actio":["Tätigkeit","kons","f","","S","actionis"],
-"ad":["am","","","","",""],
-"addere":["hinzufügen","","addo","addidi","V","additum"],
-"adducere":["heranführen","","adduco","adduxi","V","adductum"],
-"adeo":["so sehr","","","","",""]
-    
+    "inpfields":[],
+    "voks": {
+        "a": [
+            "von",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "ab": [
+            "von her",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "abducere": [
+            "wegfuehren",
+            "",
+            "abduco",
+            "abduxi",
+            "V",
+            "abductum"
+        ],
+        "abesse": [
+            "fehlen",
+            "",
+            "absum",
+            "afui",
+            "",
+            ""
+        ],
+        "abire": [
+            "weggehen",
+            "",
+            "abeo",
+            "abii",
+            "V",
+            "abitum"
+        ],
+        "ac": [
+            "und, und auch",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "atque": [
+            "wie, als",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "accedere": [
+            "herbeikommen",
+            "",
+            "accedo",
+            "accessi",
+            "V",
+            "accessum"
+        ],
+        "accendere": [
+            "anfeuern",
+            "",
+            "accendo",
+            "accendi",
+            "V",
+            "accensum"
+        ],
+        "accidere": [
+            "geschehen",
+            "",
+            "accido",
+            "accidi",
+            "V",
+            "accisus"
+        ],
+        "accipere": [
+            "erhalten",
+            "",
+            "accipo",
+            "accepi",
+            "V",
+            "acceptum"
+        ],
+        "accusare": [
+            "anklagen",
+            "",
+            "accuso",
+            "accusavi",
+            "V",
+            "accusatus"
+        ],
+        "acer": [
+            "energisch",
+            "",
+            "acris",
+            "",
+            "A",
+            "acre"
+        ],
+        "acerbus": [
+            "bitter",
+            "a,o",
+            "fmn",
+            "",
+            "A",
+            "a,um"
+        ],
+        "acies": [
+            "Schlachtordung",
+            "a",
+            "f",
+            "",
+            "S",
+            "acei"
+        ],
+        "actio": [
+            "Tätigkeit",
+            "kons",
+            "f",
+            "",
+            "S",
+            "actionis"
+        ],
+        "ad": [
+            "am",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "addere": [
+            "hinzufügen",
+            "",
+            "addo",
+            "addidi",
+            "V",
+            "additum"
+        ],
+        "adducere": [
+            "heranführen",
+            "",
+            "adduco",
+            "adduxi",
+            "V",
+            "adductum"
+        ],
+        "adeo": [
+            "so sehr",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    }
 }
