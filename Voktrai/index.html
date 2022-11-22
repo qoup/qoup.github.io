@@ -7,8 +7,8 @@
     <title>VokTrai</title>
 </head>
 <script>
-    var xhr = new XMLHttpRequest()
     var json = null;
+    donthavnameyet("https://hendriksons.github.io/Voktrai/w%C3%B6rter.json")
     var addedjson =""
     var score = 0
     var wort = ""
@@ -54,17 +54,6 @@
         genppp = word[5]
         document.getElementById("word").innerText = "Wort:" + wort
     }
-    xhr.onload = function () {
-        var res = xhr.responseText
-        console.log(res)
-        if (res.startsWith("{")) {
-            json = JSON.parse(res)
-            sectval()
-        }
-
-    }
-    xhr.open("GET", "https://hendriksons.github.io/Voktrai/w%C3%B6rter.json", true)
-    xhr.send()
     function lol() {
         check()
         sectval()
@@ -78,15 +67,42 @@
         var einspp1 = document.getElementById("einspp1").value
         var wart1= document.getElementById("wart1").value
         var genppp1 = document.getElementById("genppp1").value
-        addedjson += '"'+wort1+'":["'+trans1+'","'+ kon1+'","'+ges1+'","'+einspp1+'","'+wart1+'","'+genppp1+'"]\n'
+        addedjson += '"'+wort1+'":["'+trans1+'","'+ kon1+'","'+ges1+'","'+einspp1+'","'+wart1+'","'+genppp1+'"],\n'
         var result = document.getElementById("result").innerText = addedjson
         
+    }
+    function getvalfurl(url) {
+        var xhr= new XMLHttpRequest()
+        var rval
+        xhr.onload = function(){
+            rval =xhr.responseText
+        }
+        xhr.open("GET",url,true)
+        xhr.send()
+        return rval
+    }
+    function donthavnameyet(url1=null) {
+        var url= null
+        if(url1 == null) {
+            url =  document.getElementById('voklink').value
+        }else{
+            url= url1
+        }
+        var val123=getvalfurl(url)
+        console.log(val123);
+        var voks = JSON.parse(val123)
+        var inputfields = voks.inpfields
+        json = voks.voks
+        console.log(json);
+        console.log(inputfields);
     }
 </script>
 <style>
     :root {
         font-family: monospace;
         text-align: center;
+        color: rgb(223, 219, 219);
+        background-color: rgb(2, 12, 20);
     }
 
     h1 {
@@ -109,6 +125,24 @@
         display: block;
     }
     #add {
+        display: none;
+    }
+    input {
+        color: rgb(223, 219, 219);
+        background-color: rgb(2, 12, 20);
+        border: 0ch;
+        padding: 0.2em;
+    }
+    footer img {
+        filter: invert();
+    }
+    button {
+        color: rgb(223, 219, 219);
+        background-color: rgb(2, 12, 20);
+        border: 0ch;
+        padding: 0.2em;
+    }
+    #vokgt {
         display: none;
     }
 </style>
@@ -143,11 +177,16 @@
             <p>Send to the admin to be added:</p>
             <p id="result"></p>
         </div>
+        <div id="vokgt">
+            <input id="voklink" onsubmit="donthavnameyet()" placeholder="Destination of vokables">
+        </div>
     </main>
     <footer>
-        <img onclick="document.getElementById('add').style.display = 'block';document.getElementById('ask').style.display = 'none'" src="add.png">
-        <img onclick="document.getElementById('add').style.display = 'none';document.getElementById('ask').style.display = 'block'"
+        <img onclick="document.getElementById('add').style.display = 'block';document.getElementById('ask').style.display = 'none'; document.getElementById('vokgt').style.display = 'none';" src="add.png">
+        <img onclick="document.getElementById('add').style.display = 'none';document.getElementById('ask').style.display = 'block';document.getElementById('vokgt').style.display = 'none';"
             src="book.png" />
+        <img onclick="document.getElementById('vokgt').style.display = 'block';document.getElementById('ask').style.display = 'none'; document.getElementById('add').style.display = 'none';"
+            src="icons8-zahnrad-30.png" />
     </footer>
 </body>
 
