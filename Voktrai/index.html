@@ -76,19 +76,21 @@
         var rval = null
         xhr.onload = function(){
             rval =xhr.responseText
+            console.log(rval);
         }
         xhr.open("GET",url,true)
         xhr.send()
         return rval
     }
     function donthavnameyet(url1=null) {
+        console.log(url1);
         var url= null
         if(url1 == null) {
             url =  document.getElementById('voklink').value
         }else{
             url= url1
         }
-        var val123=getvalfurl(url)
+        var val123=  getvalfurl(url)
         console.log(val123);
         var voks = JSON.parse(val123)
         var inputfields = voks.inpfields
