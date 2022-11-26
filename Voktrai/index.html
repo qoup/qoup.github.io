@@ -14,13 +14,13 @@
     donthavnameyet("https://hendriksons.github.io/Voktrai/w%C3%B6rter.json")
     var rval = null
     function check() {
+        var score = 0
         for (let i = 0; i < inputfields.length; i++) {
             if (invals[inputfields[i]] === document.getElementById(inputfields[i]).value) {
                 score++
             } 
         }
         document.getElementById('score').innerText = "Score: " + score
-        score = 0
     }
     function sectval() {
         var length = Object.keys(json).length
@@ -83,6 +83,7 @@
                 inputfieldshtml += "<input id="+ inputfields[i]+" placeholder="+inputfields[i]+"><br>"
             }
             get("ask").innerHTML = ' <p id="score">Score:</p><p id="word">Wort: </p>' + inputfieldshtml + '<br><button id="next" onclick="lol()">Next</button>'
+            sectval()
         }
         xhr.open("GET",url,true)
         xhr.send()
