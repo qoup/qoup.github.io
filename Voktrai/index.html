@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,34 +9,15 @@
 </head>
 <script>
     var json = null;
+    var inputfields = null
+    var invals = {}
     donthavnameyet("https://hendriksons.github.io/Voktrai/w%C3%B6rter.json")
-    var addedjson =""
-    var score = 0
-    var wort = ""
-    var trans = ""
-    var kon = ""
-    var ges = ""
-    var einspp = ""
-    var wart = ""
-    var genppp = ""
+    var rval = null
     function check() {
-        if (trans === document.getElementById("trans").value) {
-            score++
-        }
-        if (kon === document.getElementById("kon").value) {
-            score++
-        }
-        if (ges === document.getElementById("ges").value) {
-            score++
-        }
-        if (einspp === document.getElementById("einspp").value) {
-            score++
-        }
-        if (wart === document.getElementById("wart").value) {
-            score++
-        }
-        if (genppp === document.getElementById("genppp").value) {
-            score++
+        for (let i = 0; i < inputfields.length; i++) {
+            if (invals[inputfields[i]] === document.getElementById(inputfields[i]).value) {
+                score++
+            } 
         }
         document.getElementById('score').innerText = "Score: " + score
         score = 0
@@ -46,13 +28,12 @@
         var rand = Math.floor(Math.random() * length)
         wort = keys[rand]
         var word = json[keys[rand]]
-        trans = word[0]
-        kon = word[1]
-        ges = word[2]
-        einspp = word[3]
-        wart = word[4]
-        genppp = word[5]
+        for (let i = 0; i < inputfields.length; i++) {
+            invals[inputfields[i]] = word[i]
+            console.log(inputfields.length);
+        }
         document.getElementById("word").innerText = "Wort:" + wort
+        console.log(invals);
     }
     function lol() {
         check()
@@ -73,30 +54,42 @@
     }
     function getvalfurl(url) {
         var xhr= new XMLHttpRequest()
-        var rval = null
-        xhr.onload = function(){
+        xhr.onloadend = function(){
             rval =xhr.responseText
             console.log(rval);
         }
         xhr.open("GET",url,true)
         xhr.send()
-        return rval
+        
     }
     function donthavnameyet(url1=null) {
-        console.log(url1);
         var url= null
         if(url1 == null) {
             url =  document.getElementById('voklink').value
         }else{
             url= url1
         }
-        var val123=  getvalfurl(url)
-        console.log(val123);
-        var voks = JSON.parse(val123)
-        var inputfields = voks.inpfields
-        json = voks.voks
-        console.log(json);
-        console.log(inputfields);
+        var val123= null
+        var xhr= new XMLHttpRequest()
+        xhr.onloadend = function(){
+            val123 =xhr.responseText
+            var voks = JSON.parse(val123)
+            inputfields = voks.inpfields
+            json = voks.voks
+            sectval()
+            inputfieldshtml =""
+            console.log(inputfields);
+            for (let i = 0; i < inputfields.length; i++) {
+                inputfieldshtml += "<input id="+ inputfields[i]+" placeholder="+inputfields[i]+"><br>"
+            }
+            get("ask").innerHTML = ' <p id="score">Score:</p><p id="word">Wort: </p>' + inputfieldshtml + '<br><button id="next" onclick="lol()">Next</button>'
+        }
+        xhr.open("GET",url,true)
+        xhr.send()
+        
+    }
+    function get(val) {
+            return document.getElementById(val)
     }
 </script>
 <style>

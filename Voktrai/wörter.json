@@ -1,5 +1,5 @@
 {
-    "inpfields":[],
+    "inpfields":["Testfield 1","Testfield 2","Testfield 3"],
     "voks":{
         "a":["von","","","","",""],
         "ab":["von her","","","","",""],
