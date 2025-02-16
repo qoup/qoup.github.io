@@ -177,21 +177,21 @@
             return list[Math.floor((Math.random() * list.length))];
         }
         function get3star() {
-            document.getElementById("kek").innerHTML = document.getElementById("kek").innerHTML + "<p>3 Sterne :" + get_random(a3) + "</p>"
+            document.getElementById("kek").innerHTML = document.getElementById("kek").innerHTML + "<p>3 Stars :" + get_random(a3) + "</p>"
         }
         function get4star() {
-            document.getElementById("kek").innerHTML = document.getElementById("kek").innerHTML + "<p id='vier'>4 Sterne :" + get_random(a4) + "</p>"
+            document.getElementById("kek").innerHTML = document.getElementById("kek").innerHTML + "<p id='vier'>4 Stars :" + get_random(a4) + "</p>"
         }
         function get5star() {
             let s = get_random(a5)
             if (i == 1) {
                 i = 0;
-                document.getElementById("kek").innerHTML = document.getElementById("kek").innerHTML + "<p id='fuenf'>5 Sterne  :" + eventfivestar + "</p>"
+                document.getElementById("kek").innerHTML = document.getElementById("kek").innerHTML + "<p id='fuenf'>5 Stars  :" + eventfivestar + "</p>"
             } else if (a7.includes(s)) {
                 i = i + 1
-                document.getElementById("kek").innerHTML = document.getElementById("kek").innerHTML + "<p id='fuenf'>5 Sterne  : " + s + "</p>"
+                document.getElementById("kek").innerHTML = document.getElementById("kek").innerHTML + "<p id='fuenf'>5 Stars  : " + s + "</p>"
             } else if (s == eventfivestar) {
-                document.getElementById("kek").innerHTML = document.getElementById("kek").innerHTML + "<p id='fuenf'>5 Sterne  : " + s + "</p>"
+                document.getElementById("kek").innerHTML = document.getElementById("kek").innerHTML + "<p id='fuenf'>5 Stars  : " + s + "</p>"
                 i = 0
             }
 
@@ -268,7 +268,7 @@
     </div>
 
     <div id="ada">
-        <p id="lsa">Rolls:</p>
+        <p id="lsa">Pulls:</p>
         <div id="kek">
 
 
