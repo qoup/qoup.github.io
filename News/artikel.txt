@@ -1,4 +1,0 @@
-{
-"20-12-21":{"name":"Noch kein Artikel vorhanden.","length":"1","artikel1":"  ","img1":""},
-"20-12-20":{"name":"Existiert nicht","length":"1","artikel1":"Dieser Artikel existiert nicht","img1":""}
-}
