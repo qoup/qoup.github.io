@@ -52,7 +52,6 @@
         animation: ringExpand 0.3s ease-in-out both;
       }
 
-
       .tile {
         width: 300px;
         height: 400px;
@@ -93,23 +92,33 @@
   </head>
   <body>
     <div class="profile-container">
-      <a href="https://github.com/Hendriksons"><img
-        src="https://avatars.githubusercontent.com/u/95649328?v=4"
-        alt="Profile Picture"
-        class="profile-image"
-        id="profileHover"
+      <a href="https://github.com/Hendriksons"
+        ><img
+          src="https://avatars.githubusercontent.com/u/95649328?v=4"
+          alt="Profile Picture"
+          class="profile-image"
+          id="profileHover"
       /></a>
       <h1 class="name">Hendriksons</h1>
       <p class="text-content">
-        I love That Time I Got Reincarnated As A Slime.<br>And I use Arch btw..
-        
+        I love That Time I Got Reincarnated As A Slime.<br />And I use Arch
+        btw..
       </p>
     </div>
 
     <div class="tiles-container" id="tileContainer">
-      <div class="tile"><h2>Interests:</h2><ul><li>Programming</li><li>Anime</li><li>Linux</li><li>Hyprland</li><li>SBC based on Risc-V & Arm Chips</li><li>League of Legends</li></ul></div>
+      <div class="tile">
+        <h2>Interests:</h2>
+        <ul>
+          <li>Programming</li>
+          <li>Anime</li>
+          <li>Linux</li>
+          <li>Hyprland</li>
+          <li>SBC based on Risc-V & Arm Chips</li>
+          <li>League of Legends</li>
+        </ul>
+      </div>
       <div class="tile">Tile 2</div>
-      
     </div>
 
     <script>
@@ -120,18 +129,23 @@
       window.addEventListener("wheel", (event) => {
         var dpmod = profileContainer.style.display;
         if (event.deltaY > 0 && dpmod == "block") {
-          // Hide main content
           profileContainer.style.display = "none";
-
-          // Show tiles if not already visible
-          if (
-            !tileContainer.style.display ||
-            tileContainer.style.display === "none"
-          ) {
-            tileContainer.style.display = "flex";
-          }
+          tileContainer.style.display = "flex";
         }
         if (event.deltaY < 0 && dpmod == "none") {
+          profileContainer.style.display = "block";
+          tileContainer.style.display = "none";
+        }
+      });
+      var touchstartY =0;
+      window.addEventListener("touchstart",(event)=>{touchstartY = event.changedTouches[0].clientY});
+      window.addEventListener("touchend",(event) =>{
+        console.log(touchstartY-event.changedTouches[0].clientY)
+        if(touchstartY-event.changedTouches[0].clientY > 10){
+          profileContainer.style.display = "none";
+          tileContainer.style.display = "flex";
+        }
+        if(touchstartY-event.changedTouches[0].clientY < 10){ 
           profileContainer.style.display = "block";
           tileContainer.style.display = "none";
         }
