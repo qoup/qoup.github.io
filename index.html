@@ -30,7 +30,7 @@
       .profile-image:hover {
         transform: scale(1.1);
         /* animation: ringExpand 0.5s ease both; */
-        box-shadow: 0 0 20px white;
+        animation: whiteBox 0.8s ease-in-out both;
       }
       .profile-image {
         width: 200px;
@@ -75,6 +75,14 @@
         }
         to {
           opacity: 1;
+        }
+      }
+      @keyframes whiteBox {
+        0% {
+          box-shadow: 0 0 1px white;
+        }
+        100% {
+          box-shadow: 0 0 100px white;
         }
       }
 
