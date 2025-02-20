@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="./Pictures/Icon.webp" type="image/png">
+    <link rel="icon" href="./Pictures/Icon.webp" type="image/png" />
     <title>Hendriksons</title>
     <style>
       body {
@@ -22,7 +22,7 @@
         cursor: default;
       }
 
-      .profile-container {
+      #profile-container {
         text-align: center;
         display: block;
         animation: ringExpand 0.3s ease-in-out both;
@@ -101,7 +101,7 @@
     </style>
   </head>
   <body>
-    <div class="profile-container">
+    <div class="profile-container" id="profile-container">
       <a href="https://github.com/Hendriksons"
         ><img
           src="./Pictures/PFP.png"
@@ -129,34 +129,56 @@
           <li>Homeservers</li>
         </ul>
       </div>
-      <div class="tile"><h2>Programming Languages:</h2><ul><li>Python</li><li>Java</li><li>Kotlin</li><li>Javascript/Typescript</li><li>Flutter/Dart</li><li>And every other Framework I used for fun</li></ul></div>
+      <div class="tile">
+        <h2>Programming Languages:</h2>
+        <ul>
+          <li>Python</li>
+          <li>Java</li>
+          <li>Kotlin</li>
+          <li>Javascript/Typescript</li>
+          <li>Flutter/Dart</li>
+          <li>And every other Framework I used for fun</li>
+        </ul>
+      </div>
     </div>
 
     <script>
-      const profileContainer = document.querySelector(".profile-container");
+      const profileContainer = document.getElementById("profile-container");
       const tileContainer = document.getElementById("tileContainer");
+      let pages = { "profile-container": "block", tileContainer: "flex" };
+      let pagekeys = Object.keys(pages)
+      let pagevalues = Object.values(pages)
+      let page = 0;
 
       // Show tiles on scroll
       window.addEventListener("wheel", (event) => {
-        var dpmod = profileContainer.style.display;
-        if (event.deltaY > 0 && dpmod == "block") {
-          profileContainer.style.display = "none";
-          tileContainer.style.display = "flex";
+        if (event.deltaY > 0) {
+          if (pagekeys.length != (page + 1)) {
+            document.getElementById(pagekeys[page]).style.display = "none"
+            document.getElementById(pagekeys[page+1]).style.display = pagevalues[page+1]
+            page = page + 1;
+            
+          }
         }
-        if (event.deltaY < 0 && dpmod == "none") {
-          profileContainer.style.display = "block";
-          tileContainer.style.display = "none";
+        if (event.deltaY < 0) {
+          if ((pagekeys.length != page - 1) && page -1 != -1) {
+            document.getElementById(pagekeys[page-1]).style.display = pagevalues[page - 1]
+            document.getElementById(pagekeys[page]).style.display = "none"
+            page = page - 1;
+          }
         }
       });
-      var touchstartY =0;
-      window.addEventListener("touchstart",(event)=>{touchstartY = event.changedTouches[0].clientY});
-      window.addEventListener("touchend",(event) =>{
-        console.log(touchstartY-event.changedTouches[0].clientY)
-        if(touchstartY-event.changedTouches[0].clientY > 10){
+      var touchstartY = 0;
+      window.addEventListener("touchstart", (event) => {
+        touchstartY = event.changedTouches[0].clientY;
+      });
+      window.addEventListener("touchend", (event) => {
+        console.log(touchstartY - event.changedTouches[0].clientY);
+        if (touchstartY - event.changedTouches[0].clientY > 10) {
           profileContainer.style.display = "none";
           tileContainer.style.display = "flex";
         }
-        if(touchstartY-event.changedTouches[0].clientY < 10){ 
+        if (touchstartY - event.changedTouches[0].clientY < 10) {
           profileContainer.style.display = "block";
           tileContainer.style.display = "none";
         }
