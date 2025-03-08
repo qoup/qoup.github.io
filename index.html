@@ -9,8 +9,8 @@
       :root {
         --foreground: white;
         --background: #0a0a0a;
-        --thiback: #161616;
-        --secback: #262626;
+        --thiback: rgba(22,22,22,0.8);
+        --secback: rgba(40,40,40,0.9);
       }
       body {
         margin: 0;
@@ -25,9 +25,17 @@
         overflow-y: scroll;
         animation: ringExpand 0.3s ease-in-out both;
         user-select: none;
-        cursor: default;
+        cursor:default;
       }
       
+      canvas{
+        background-color: black;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
       #profile-container {
         text-align: center;
         display: block;
@@ -72,7 +80,7 @@
         min-width: 350px;
         width: 40rem;
         height: 400px;
-        background-color: var(--thiback);
+        background-color:var(--thiback);
         border-radius: 10px;
         padding: 20px;
         transition: all 0.5s ease;
@@ -116,6 +124,8 @@
     </style>
   </head>
   <body>
+    <canvas id="starbackground" width="100%" height="100%">
+    </canvas>
     <div class="profile-container" id="profile-container">
       <a draggable="false" href="https://github.com/Hendriksons"
         ><img
@@ -206,6 +216,62 @@
         profileContainer.style.display = "block";
         tileContainer.style.display = "none";
       });
+    const canvas = window.document.getElementById("starbackground");
+    canvas.width = window.outerWidth;
+    canvas.height = window.outerHeight;
+    const ctx = canvas.getContext("2d");
+    ctx.strokeStyle = "white";
+    ctx.fillStyle = "white";
+    let flakes = [];
+    const r = 1.8;
+    const amountflakes = window.outerHeight * window.outerWidth * 0.00015;
+    let scroll = 0
+
+    function drawFlakes(factorY,factorX){
+      ctx.clearRect(0,0,canvas.width,canvas.height)
+      flakes.forEach((element)=>{
+        ctx.beginPath();
+        const x =Math.floor(element[1]+ r*100 *(factorX*0.01)) % canvas.width;
+        const y = Math.floor(element[0]+ r*100 *(factorY*0.01)) % canvas.height;
+        let deltaX = x-canvas.width/2;
+        let deltaY = y-canvas.height/2;
+        //const distanceCenter = Math.sqrt(Math.pow(deltaX,2)+ Math.pow(deltaY,2));
+        const flakeSize =element[2]// + scroll* -1 *10 * Math.pow(distanceCenter,-2);
+        //console.log(flakeSize,element[2],distanceCenter) 
+        //ctx.arc((scroll/100)*(canvas.width/2)+deltaX,(scroll/100)*(canvas.height/2)+deltaY,flakeSize,0,2*Math.PI,false);
+        ctx.arc(x,y,flakeSize,0,2*Math.PI,false);
+        ctx.fill()
+      })
+    }
+
+    function makeStars() {
+      for (let i = 0; i < Math.floor(amountflakes);i++) { 
+        const randX = Math.floor(Math.random()* window.outerWidth);
+        const randY = Math.floor(Math.random()* window.outerHeight);
+        //const randRad = Math.floor(Math.random()*100)/40;
+        const newrandRad = (1/Math.pow((Math.random()+1.2),10))*12 +1;
+        const flakeTurple = [randY,randX,newrandRad];
+        if (!flakes.includes(flakeTurple)) {
+          flakes.push(flakeTurple);
+        }
+      }
+    }
+
+    makeStars();
+    drawFlakes(0,0);
+    window.addEventListener("mousemove",(event) => {
+      const deltaX = event.clientX;
+      const deltaY = event.clientY;
+      drawFlakes(Math.floor(deltaY),Math.floor(deltaX));
+    });
+    window.addEventListener("resize", (event)=>{
+      canvas.width = window.outerWidth;
+      canvas.height = window.outerHeight;
+      makeStars();
+    })
+    window.addEventListener("touchmove", (event)=> {
+      drawFlakes(event.changedTouches[0].clientY,event.changedTouches[0].clientX)
+    });
     </script>
   </body>
 </html>
