@@ -138,7 +138,7 @@
       <h1 class="name">Hendriksons</h1>
       <p class="text-content">
         I love That Time I Got Reincarnated As A Slime.<br />And I use Arch
-        btw..
+        btw.
       </p>
     </div>
 
@@ -200,7 +200,6 @@
         touchstartY = event.changedTouches[0].clientY;
       });
       window.addEventListener("touchend", (event) => {
-        console.log(touchstartY - event.changedTouches[0].clientY);
         if (touchstartY - event.changedTouches[0].clientY > 10) {
           profileContainer.style.display = "none";
           tileContainer.style.display = "flex";
@@ -245,7 +244,6 @@
 
     function makeStars(lowlimx = 0,lowlimy= 0) {
       const amountflakes = Math.abs(canvas.height-lowlimy) * Math.abs(canvas.width - lowlimx)* 0.00015;
-      console.log(amountflakes)
       for (let i = 0; i < Math.ceil(amountflakes);i++) { 
         const randX = Math.floor(Math.random()* (canvas.width-lowlimx)+ lowlimx);
         const randY = Math.floor(Math.random()* (canvas.height - lowlimy) + lowlimy);
