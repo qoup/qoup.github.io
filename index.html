@@ -217,18 +217,17 @@
         tileContainer.style.display = "none";
       });
     const canvas = window.document.getElementById("starbackground");
-    canvas.width = window.outerWidth;
-    canvas.height = window.outerHeight;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     const ctx = canvas.getContext("2d");
     ctx.strokeStyle = "white";
     ctx.fillStyle = "white";
     let flakes = [];
     const r = 1.8;
-    const amountflakes = window.outerHeight * window.outerWidth * 0.00015;
     let scroll = 0
 
     function drawFlakes(factorY,factorX){
-      ctx.clearRect(0,0,canvas.width,canvas.height)
+      ctx.clearRect(0,0,canvas.width,canvas.height);
       flakes.forEach((element)=>{
         ctx.beginPath();
         const x =Math.floor(element[1]+ r*100 *(factorX*0.01)) % canvas.width;
@@ -241,13 +240,15 @@
         //ctx.arc((scroll/100)*(canvas.width/2)+deltaX,(scroll/100)*(canvas.height/2)+deltaY,flakeSize,0,2*Math.PI,false);
         ctx.arc(x,y,flakeSize,0,2*Math.PI,false);
         ctx.fill()
-      })
+      });
     }
 
-    function makeStars() {
-      for (let i = 0; i < Math.floor(amountflakes);i++) { 
-        const randX = Math.floor(Math.random()* window.outerWidth);
-        const randY = Math.floor(Math.random()* window.outerHeight);
+    function makeStars(lowlimx = 0,lowlimy= 0) {
+      const amountflakes = Math.abs(canvas.height-lowlimy) * Math.abs(canvas.width - lowlimx)* 0.00015;
+      console.log(amountflakes)
+      for (let i = 0; i < Math.ceil(amountflakes);i++) { 
+        const randX = Math.floor(Math.random()* (canvas.width-lowlimx)+ lowlimx);
+        const randY = Math.floor(Math.random()* (canvas.height - lowlimy) + lowlimy);
         //const randRad = Math.floor(Math.random()*100)/40;
         const newrandRad = (1/Math.pow((Math.random()+1.2),10))*12 +1;
         const flakeTurple = [randY,randX,newrandRad];
@@ -264,11 +265,14 @@
       const deltaY = event.clientY;
       drawFlakes(Math.floor(deltaY),Math.floor(deltaX));
     });
-    window.addEventListener("resize", (event)=>{
-      canvas.width = window.outerWidth;
-      canvas.height = window.outerHeight;
-      makeStars();
-      drawFlakes(0,0)
+    window.addEventListener("resize",() =>{
+      const limy = canvas.height;
+      const limx = canvas.width;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      makeStars(limx==canvas.width ? 0 : limx,limy==canvas.height ? 0 : limy);
+      ctx.fillStyle = "white";
+      drawFlakes(0,0);
     })
     window.addEventListener("touchmove", (event)=> {
       drawFlakes(event.changedTouches[0].clientY,event.changedTouches[0].clientX)
