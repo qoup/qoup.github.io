@@ -81,12 +81,17 @@
         width: 40rem;
         height: 400px;
         background-color: var(--thiback);
+        backdrop-filter: blur(5);
         border-radius: 10px;
         padding: 20px;
         transition: all 0.5s ease;
         cursor: pointer;
+        font-size: 18px;
       }
-
+      .tile h2 {
+        text-align: center;
+        font-size: 28px;
+      }
       .tile:hover {
         transform: scale(1.05);
         background-color: var(--secback);
@@ -142,7 +147,7 @@
 
     <div class="tiles-container" id="tileContainer">
       <div class="tile">
-        <h2>Interests:</h2>
+        <h2>Interests</h2>
         <ul>
           <li>Programming</li>
           <li>Novels/Books</li>
@@ -155,14 +160,13 @@
         </ul>
       </div>
       <div class="tile">
-        <h2>Programming Languages:</h2>
+        <h2>Programming Languages</h2>
         <ul>
           <li>Python</li>
           <li>Java</li>
           <li>Kotlin</li>
           <li>Javascript/Typescript</li>
           <li>Flutter/Dart</li>
-          <li>And every other Framework I used for fun</li>
         </ul>
       </div>
     </div>
