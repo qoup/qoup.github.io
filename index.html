@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./Pictures/PFPART.png" type="image/png" />
+    <title>qoup</title>
+    <style>
+      :root {
+        --foreground: white;
+        --background: #0a0a0a;
+        --thiback: rgba(255, 255, 255, 0.05);
+        --secback: rgba(255, 255, 255, 0.1);
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: var(--background);
+        font-family: Arial, sans-serif;
+        color: var(--foreground);
+        overflow-y: scroll;
+        animation: ringExpand 0.3s ease-in-out both;
+        user-select: none;
+        cursor: default;
+      }
+
+      canvas {
+        background-color: black;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+      #profile-container {
+        text-align: center;
+        display: block;
+        animation: ringExpand 0.3s ease-in-out both;
+      }
+      .profile-image:hover {
+        transform: scale(1.1);
+        /* animation: ringExpand 0.5s ease both; */
+        animation: whiteBox 0.8s ease-in-out both;
+      }
+      .profile-image {
+        width: 19vh;
+        height: 19vh;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        object-fit: scale-down;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.5s ease-in-out;
+      }
+      @media (max-width: 1920px) {
+        .profile-image {
+          width: 200px;
+          height: 200px;
+        }
+      }
+      .tiles-container {
+        display: flex;
+        opacity: 0;
+        min-width: 50%;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 20px;
+        gap: 20px;
+        /* margin-top: 50vh; */
+        display: none;
+        animation: ringExpand 0.3s ease-in-out both;
+      }
+
+      .tile {
+        max-width: 40rem;
+        min-width: 350px;
+        width: 40rem;
+        height: 400px;
+        background-color: var(--thiback);
+        backdrop-filter: blur(5px) brightness(5);
+        border-radius: 10px;
+        padding: 20px;
+        transition: all 0.5s ease;
+        cursor: pointer;
+        font-size: 18px;
+      }
+      .tile h2 {
+        text-align: center;
+        font-size: 28px;
+      }
+      .tile:hover {
+        transform: scale(1.05);
+        background-color: var(--secback);
+      }
+
+      @keyframes ringExpand {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes whiteBox {
+        0% {
+          box-shadow: 0 0 1px var(--foreground);
+        }
+        100% {
+          box-shadow: 0 0 100px var(--foreground);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .tiles-container {
+          flex-wrap: wrap;
+          justify-content: center;
+          padding: 10px;
+        }
+
+        .tile {
+          width: 90%;
+          max-width: 250px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="starbackground" width="100%" height="100%"> </canvas>
+    <div class="profile-container" id="profile-container">
+      <a draggable="false" href="https://github.com/Qoup"
+        ><img
+          draggable="false"
+          src="./Pictures/PFPART.png"
+          alt="Profile Picture"
+          class="profile-image"
+          id="profileHover"
+      /></a>
+      <h1 class="name">qoup</h1>
+      <p class="text-content"><br />I use Arch btw.</p>
+    </div>
+
+    <div class="tiles-container" id="tileContainer">
+      <div class="tile">
+        <h2>Interests</h2>
+        <ul>
+          <li>Programming</li>
+          <li>Novels/Books</li>
+          <li>Anime</li>
+          <li>Linux</li>
+          <li>Hyprland</li>
+          <li>SBC based on Risc-V & Arm Chips</li>
+          <li>League of Legends</li>
+          <li>Homeservers</li>
+        </ul>
+      </div>
+      <div class="tile">
+        <h2>Programming Languages</h2>
+        <ul>
+          <li>Python</li>
+          <li>Java</li>
+          <li>Javascript/Typescript</li>
+          <li>Kotlin</li>
+          <li>Flutter/Dart</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      const profileContainer = document.getElementById("profile-container");
+      const tileContainer = document.getElementById("tileContainer");
+      let pages = { "profile-container": "block", tileContainer: "flex" };
+      let pagekeys = Object.keys(pages);
+      let pagevalues = Object.values(pages);
+      let page = 0;
+
+      // Show tiles on scroll
+      window.addEventListener("wheel", (event) => {
+        if (event.deltaY > 0) {
+          if (pagekeys.length != page + 1) {
+            document.getElementById(pagekeys[page]).style.display = "none";
+            document.getElementById(pagekeys[page + 1]).style.display =
+              pagevalues[page + 1];
+            page = page + 1;
+          }
+        }
+        if (event.deltaY < 0) {
+          if (pagekeys.length != page - 1 && page - 1 != -1) {
+            document.getElementById(pagekeys[page - 1]).style.display =
+              pagevalues[page - 1];
+            document.getElementById(pagekeys[page]).style.display = "none";
+            page = page - 1;
+          }
+        }
+      });
+      var touchstartY = 0;
+      window.addEventListener("touchstart", (event) => {
+        touchstartY = event.changedTouches[0].clientY;
+      });
+      window.addEventListener("touchend", (event) => {
+        if (touchstartY - event.changedTouches[0].clientY > 10) {
+          profileContainer.style.display = "none";
+          tileContainer.style.display = "flex";
+        }
+        if (touchstartY - event.changedTouches[0].clientY < 10) {
+          profileContainer.style.display = "block";
+          tileContainer.style.display = "none";
+        }
+      });
+
+      // Show main content on load
+      window.addEventListener("load", function () {
+        profileContainer.style.display = "block";
+        tileContainer.style.display = "none";
+      });
+      const canvas = window.document.getElementById("starbackground");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const ctx = canvas.getContext("2d");
+      ctx.strokeStyle = "white";
+      ctx.fillStyle = "white";
+      let flakes = [];
+      const r = 1.8;
+      let scroll = 0;
+
+      function drawFlakes(factorY, factorX) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        flakes.forEach((element) => {
+          ctx.beginPath();
+          const x =
+            Math.floor(element[1] + r * 100 * (factorX * 0.01)) % canvas.width;
+          const y =
+            Math.floor(element[0] + r * 100 * (factorY * 0.01)) % canvas.height;
+          let deltaX = x - canvas.width / 2;
+          let deltaY = y - canvas.height / 2;
+          //const distanceCenter = Math.sqrt(Math.pow(deltaX,2)+ Math.pow(deltaY,2));
+          const flakeSize = element[2]; // + scroll* -1 *10 * Math.pow(distanceCenter,-2);
+          //console.log(flakeSize,element[2],distanceCenter)
+          //ctx.arc((scroll/100)*(canvas.width/2)+deltaX,(scroll/100)*(canvas.height/2)+deltaY,flakeSize,0,2*Math.PI,false);
+          ctx.arc(x, y, flakeSize, 0, 2 * Math.PI, false);
+          ctx.fill();
+        });
+      }
+
+      function makeStars(lowlimx = 0, lowlimy = 0) {
+        flakes = [];
+        const amountflakes =
+          Math.abs(canvas.height - lowlimy) *
+          Math.abs(canvas.width - lowlimx) *
+          0.00002;
+        for (let i = 0; i < Math.ceil(amountflakes); i++) {
+          const randX = Math.floor(
+            Math.random() * (canvas.width - lowlimx) + lowlimx,
+          );
+          const randY = Math.floor(
+            Math.random() * (canvas.height - lowlimy) + lowlimy,
+          );
+          //const randRad = Math.floor(Math.random()*100)/40;
+          const newrandRad = (1 / Math.pow(Math.random() + 1.2, 10)) * 12 + 1;
+          const flakeTurple = [randY, randX, newrandRad];
+          if (!flakes.includes(flakeTurple)) {
+            flakes.push(flakeTurple);
+          }
+        }
+      }
+
+      makeStars();
+      drawFlakes(0, 0);
+      window.addEventListener("mousemove", (event) => {
+        const deltaX = event.clientX;
+        const deltaY = event.clientY;
+        drawFlakes(Math.floor(deltaY), Math.floor(deltaX));
+      });
+      window.addEventListener("resize", () => {
+        const limy = canvas.height;
+        const limx = canvas.width;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        makeStars();
+        ctx.fillStyle = "white";
+        drawFlakes(0, 0);
+      });
+      window.addEventListener("touchmove", (event) => {
+        drawFlakes(
+          event.changedTouches[0].clientY,
+          event.changedTouches[0].clientX,
+        );
+      });
+    </script>
+  </body>
+</html>
